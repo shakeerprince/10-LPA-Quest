@@ -23,7 +23,7 @@ export async function GET() {
         });
 
         return NextResponse.json({
-            completedTopics: progress.map(p => p.topicId),
+            completedTopics: progress.map((p: { topicId: string }) => p.topicId),
             progress,
         });
     } catch (error) {
