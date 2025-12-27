@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 // NextAuth required models
@@ -17,12 +17,12 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -123,7 +123,7 @@ model StudyDay {
   id             String   @id @default(cuid())
   userId         String
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  date           DateTime @db.Date
+  date           DateTime
   hoursStudied   Float    @default(0)
   tasksCompleted Int      @default(0)
   xpEarned       Int      @default(0)
@@ -151,7 +151,7 @@ model Note {
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   title     String
-  content   String   @db.Text
+  content   String
   category  String   // 'dsa' | 'system-design' | 'behavioral' | 'development' | 'general'
   topicId   String?
   createdAt DateTime @default(now())
@@ -165,7 +165,7 @@ model WeeklyGoal {
   id                String   @id @default(cuid())
   userId            String
   user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  weekStart         DateTime @db.Date
+  weekStart         DateTime
   problemsTarget    Int      @default(20)
   problemsCompleted Int      @default(0)
   hoursTarget       Int      @default(20)

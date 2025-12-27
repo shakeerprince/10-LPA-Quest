@@ -1,11 +1,20 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { getDailyQuote } from '@/data/roadmap';
 import { Quote } from 'lucide-react';
 
 export function DailyQuote() {
-    const { quote, author } = getDailyQuote();
+    const [quoteData, setQuoteData] = useState<{ quote: string; author: string } | null>(null);
+
+    useEffect(() => {
+        setQuoteData(getDailyQuote());
+    }, []);
+
+    if (!quoteData) return null;
+
+    const { quote, author } = quoteData;
 
     return (
         <motion.div

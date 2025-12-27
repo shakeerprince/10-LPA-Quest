@@ -8,6 +8,8 @@ import {
     Rocket, Target, Clock, Building2, ChevronRight, ChevronLeft,
     Sparkles, Code, Server, Layers, Briefcase, Zap, CheckCircle2
 } from 'lucide-react';
+import { generateRoadmap, RoadmapRole, CompanyType, Timeframe } from '@/lib/roadmapGenerator';
+import { useRoadmapStore } from '@/store/useRoadmapStore';
 
 type Step = 'welcome' | 'role' | 'timeframe' | 'company' | 'complete';
 
@@ -65,7 +67,17 @@ export default function OnboardingPage() {
             const targetDate = new Date(startDate);
             targetDate.setMonth(targetDate.getMonth() + months);
 
-            // Save onboarding data
+            // Generate personalized roadmap based on onboarding answers
+            const generatedRoadmap = generateRoadmap(
+                selectedRole as RoadmapRole,
+                selectedTimeframe as Timeframe,
+                selectedCompany as CompanyType
+            );
+
+            // Store roadmap in Zustand (persisted to localStorage)
+            useRoadmapStore.getState().setRoadmap(generatedRoadmap, startDate);
+
+            // Save onboarding data to database
             await fetch('/api/user/onboarding', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -159,8 +171,8 @@ export default function OnboardingPage() {
                                         key={role.id}
                                         onClick={() => setSelectedRole(role.id)}
                                         className={`p-5 rounded-xl border-2 text-left transition-all ${selectedRole === role.id
-                                                ? 'border-purple-500 bg-purple-500/10'
-                                                : 'border-gray-700 bg-gray-800/50 hover:border-gray-600'
+                                            ? 'border-purple-500 bg-purple-500/10'
+                                            : 'border-gray-700 bg-gray-800/50 hover:border-gray-600'
                                             }`}
                                     >
                                         <role.icon className={`w-8 h-8 mb-3 ${selectedRole === role.id ? 'text-purple-400' : 'text-gray-400'}`} />
@@ -201,8 +213,8 @@ export default function OnboardingPage() {
                                         key={tf.id}
                                         onClick={() => setSelectedTimeframe(tf.id)}
                                         className={`p-6 rounded-xl border-2 text-left transition-all ${selectedTimeframe === tf.id
-                                                ? 'border-cyan-500 bg-cyan-500/10'
-                                                : 'border-gray-700 bg-gray-800/50 hover:border-gray-600'
+                                            ? 'border-cyan-500 bg-cyan-500/10'
+                                            : 'border-gray-700 bg-gray-800/50 hover:border-gray-600'
                                             }`}
                                     >
                                         <tf.icon className={`w-10 h-10 mb-3 ${selectedTimeframe === tf.id ? 'text-cyan-400' : 'text-gray-400'}`} />
@@ -247,8 +259,8 @@ export default function OnboardingPage() {
                                         key={company.id}
                                         onClick={() => setSelectedCompany(company.id)}
                                         className={`p-5 rounded-xl border-2 text-left transition-all ${selectedCompany === company.id
-                                                ? 'border-pink-500 bg-pink-500/10'
-                                                : 'border-gray-700 bg-gray-800/50 hover:border-gray-600'
+                                            ? 'border-pink-500 bg-pink-500/10'
+                                            : 'border-gray-700 bg-gray-800/50 hover:border-gray-600'
                                             }`}
                                     >
                                         <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${company.color} mb-3 flex items-center justify-center`}>

@@ -20,7 +20,8 @@ import {
     Bot,
     Building2,
     Sun,
-    Moon
+    Moon,
+    CalendarDays
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useGamification, calculateLevel, getLevelTitle } from '@/store/useGamification';
@@ -30,14 +31,15 @@ import { UserMenu } from '@/components/auth/UserMenu';
 
 const mainNavLinks = [
     { href: '/', label: 'Dashboard', icon: Home },
+    { href: '/my-roadmap', label: 'My Roadmap', icon: CalendarDays },
     { href: '/roadmap', label: 'Skill Tree', icon: Map },
     { href: '/quests', label: 'Quests', icon: ListTodo },
     { href: '/company-prep', label: 'Companies', icon: Building2, special: true },
     { href: '/ai-mentor', label: 'AI Mentor', icon: Bot },
-    { href: '/pomodoro', label: 'Pomodoro', icon: Timer },
 ];
 
 const moreNavLinks = [
+    { href: '/pomodoro', label: 'Pomodoro', icon: Timer },
     { href: '/achievements', label: 'Achievements', icon: Trophy },
     { href: '/analytics', label: 'Analytics', icon: BarChart3 },
     { href: '/notes', label: 'Notes', icon: FileText },
@@ -92,6 +94,12 @@ export function Navbar() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
+                                    onClick={(e) => {
+                                        if (link.href === '/') {
+                                            e.preventDefault();
+                                            window.location.href = '/';
+                                        }
+                                    }}
                                     className={`relative px-3 py-2 rounded-lg flex items-center gap-2 transition-all duration-300 ${isSpecial && !isActive
                                         ? 'text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 hover:border-emerald-500/50'
                                         : isActive

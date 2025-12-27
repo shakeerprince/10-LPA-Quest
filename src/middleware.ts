@@ -24,6 +24,7 @@ export default withAuth(
                 const publicPaths = [
                     '/auth/signin',
                     '/auth/signup',
+                    '/auth/error',
                     '/api/auth',
                     '/api/auth/register',
                 ];
@@ -41,6 +42,7 @@ export default withAuth(
         },
         pages: {
             signIn: '/auth/signin',
+            error: '/auth/error',
         },
     }
 );

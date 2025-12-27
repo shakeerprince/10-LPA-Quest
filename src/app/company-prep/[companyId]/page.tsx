@@ -37,7 +37,6 @@ function QuestionItem({ question, companyId }: { question: CompanyQuestion; comp
 
     return (
         <motion.div
-            layout
             className={`p-4 rounded-xl border transition-all ${isSolved
                 ? 'bg-green-500/10 border-green-500/30'
                 : 'glass-card border-gray-700 hover:border-purple-500/30'
@@ -97,7 +96,7 @@ function InsightCard({ insight }: { insight: CommunityInsight }) {
     }[insight.type];
 
     return (
-        <motion.div layout className="glass-card p-4 rounded-xl border border-gray-700">
+        <motion.div className="glass-card p-4 rounded-xl border border-gray-700">
             <div className="flex items-start gap-3">
                 <div className={`p-2 rounded-lg ${typeStyles.bg}`}>
                     <span className={typeStyles.color}>{typeStyles.icon}</span>
@@ -204,8 +203,8 @@ export default function CompanyDetailPage() {
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all whitespace-nowrap ${activeTab === tab.id
-                                    ? 'bg-gradient-to-r from-purple-500 to-cyan-500 text-white'
-                                    : 'glass-card text-gray-400 hover:text-white'
+                                ? 'bg-gradient-to-r from-purple-500 to-cyan-500 text-white'
+                                : 'glass-card text-gray-400 hover:text-white'
                                 }`}
                         >
                             {tab.icon}

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ROADMAP, DSA_SHEETS, type Pillar, type Module, type Topic } from '@/data/roadmap';
 import { useGamification } from '@/store/useGamification';
+import { InterviewDSASheetSection } from '@/components/roadmap/InterviewDSASheet';
 import {
     ChevronDown,
     ChevronRight,
@@ -69,8 +70,8 @@ function TopicItem({ topic, onToggle, isCompleted }: {
         <motion.div
             layout
             className={`relative flex items-center gap-3 p-3 rounded-lg transition-all duration-300 ${isCompleted
-                    ? 'bg-green-500/10 border border-green-500/30'
-                    : 'bg-gray-800/30 border border-gray-700/30 hover:border-purple-500/30'
+                ? 'bg-green-500/10 border border-green-500/30'
+                : 'bg-gray-800/30 border border-gray-700/30 hover:border-purple-500/30'
                 }`}
         >
             <XPPopup xp={topic.xp} show={showXP} />
@@ -78,8 +79,8 @@ function TopicItem({ topic, onToggle, isCompleted }: {
             <button
                 onClick={handleToggle}
                 className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${isCompleted
-                        ? 'bg-green-500 border-green-500'
-                        : 'border-gray-600 hover:border-purple-500'
+                    ? 'bg-green-500 border-green-500'
+                    : 'border-gray-600 hover:border-purple-500'
                     }`}
             >
                 {isCompleted && <Check className="w-4 h-4 text-white" />}
@@ -313,7 +314,10 @@ export default function RoadmapPage() {
                     </p>
                 </motion.div>
 
-                {/* DSA Sheets */}
+                {/* Top Interview Questions */}
+                <InterviewDSASheetSection />
+
+                {/* DSA Practice Sheets */}
                 <DSASheetsSection />
 
                 {/* Filter Tabs */}
@@ -323,8 +327,8 @@ export default function RoadmapPage() {
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeTab === tab.id
-                                    ? 'bg-gradient-to-r from-purple-500 to-cyan-500 text-white'
-                                    : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-800'
+                                ? 'bg-gradient-to-r from-purple-500 to-cyan-500 text-white'
+                                : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-800'
                                 }`}
                         >
                             {tab.label}

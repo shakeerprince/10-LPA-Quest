@@ -4,8 +4,13 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import bcrypt from 'bcryptjs';
 import prisma from '@/lib/db';
 
+console.log("Auth Debug - NEXTAUTH_URL:", process.env.NEXTAUTH_URL);
+console.log("Auth Debug - NEXTAUTH_SECRET set:", !!process.env.NEXTAUTH_SECRET);
+
 export const authOptions: NextAuthOptions = {
-    adapter: PrismaAdapter(prisma) as NextAuthOptions['adapter'],
+    // adapter: PrismaAdapter(prisma) as NextAuthOptions['adapter'],
+    secret: process.env.NEXTAUTH_SECRET || 'development-secret-change-in-production-min-32-chars',
+    debug: true, // Enable debug mode explicitly
     providers: [
         CredentialsProvider({
             name: 'credentials',
@@ -63,5 +68,4 @@ export const authOptions: NextAuthOptions = {
         signIn: '/auth/signin',
         error: '/auth/error',
     },
-    debug: process.env.NODE_ENV === 'development',
 };
