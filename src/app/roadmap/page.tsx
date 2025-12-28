@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ROADMAP, DSA_SHEETS, type Pillar, type Module, type Topic } from '@/data/roadmap';
 import { useGamification } from '@/store/useGamification';
 import { InterviewDSASheetSection } from '@/components/roadmap/InterviewDSASheet';
+import { DSACalendar2026Section } from '@/components/roadmap/DSACalendar2026';
 import {
     ChevronDown,
     ChevronRight,
@@ -316,6 +317,9 @@ export default function RoadmapPage() {
 
                 {/* Top Interview Questions */}
                 <InterviewDSASheetSection />
+
+                {/* DSA Calendar 2026 Roadmap */}
+                <DSACalendar2026Section />
 
                 {/* DSA Practice Sheets */}
                 <DSASheetsSection />
