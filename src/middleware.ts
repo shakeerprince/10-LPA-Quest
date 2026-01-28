@@ -50,6 +50,6 @@ export default withAuth(
 export const config = {
     matcher: [
         // Match all routes except static files and API routes that should be public
-        '/((?!_next/static|_next/image|favicon.ico|public).*)',
+        '/((?!_next/static|_next/image|favicon.ico|ads.txt|robots.txt|public).*)',
     ],
 };
