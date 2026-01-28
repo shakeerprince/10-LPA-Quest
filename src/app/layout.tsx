@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ClientProviders } from "@/components/providers/ClientProviders";
+import Script from "next/script";
 
 export const dynamic = 'force-dynamic';
 
@@ -31,6 +32,12 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased min-h-screen flex flex-col`}
       >
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3667684562539469"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <ClientProviders>
           <Navbar />
           <main className="flex-1">
