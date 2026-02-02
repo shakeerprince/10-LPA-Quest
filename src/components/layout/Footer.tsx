@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Heart, Github, Linkedin, Twitter } from 'lucide-react';
+import { Heart, Github, Linkedin, Twitter, ExternalLink } from 'lucide-react';
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
@@ -74,6 +74,15 @@ export function Footer() {
                             className="p-2 rounded-lg hover:bg-white/10 transition-colors text-gray-400 hover:text-white"
                         >
                             <Twitter className="w-5 h-5" />
+                        </a>
+                        <a
+                            href="https://www.effectivegatecpm.com/ragkag26v?key=8657aec80a4eb42b1228a4fa03bff3c8"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 rounded-lg hover:bg-white/10 transition-colors text-gray-400 hover:text-white"
+                            title="Special Offer"
+                        >
+                            <ExternalLink className="w-5 h-5" />
                         </a>
                     </motion.div>
                 </div>
