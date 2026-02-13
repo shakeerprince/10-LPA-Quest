@@ -38,14 +38,6 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        <Script
-          src="https://pl28631767.effectivegatecpm.com/40/81/3c/40813ca1b2554767cc140e2d0d488096.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="https://pl28632078.effectivegatecpm.com/f5/74/40/f57440145e97f106242572da533dde13.js"
-          strategy="afterInteractive"
-        />
         <ClientProviders>
           <Navbar />
           <main className="flex-1">
